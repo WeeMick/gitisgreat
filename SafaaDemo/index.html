@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+
+  <title>Collapsible sidebar using Bootstrap 3</title>
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Our Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Scrollbar Custom CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+</head>
+
+<body>
+<h1>this is a testfgnfhn</h1>
+
+
+  <div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+
+        <h3><img src="images/logo1.jpg" alt="logo"style="width:75px;height:60px";></h3>
+
+</div>
+      <ul class="list-unstyled components">
+        <!--<p>GRAPHS</p>
+         <li class="active">
+          <a href="#menu">GRAPHS
+		 </a>
+
+        </li> -->
+		<li>
+          <a href="#menu">Pressure Diffrential @ valve ∆P(bar)
+
+
+</a>
+</li>
+<hr>
+        <li>
+          <a href="#menu">Volumetric flow across Valve Q (m3/s)
+
+</a>
+</li>
+<hr>
+ <li>
+          <a href="#menu">Total Outflow @ Rupture Qoutflow(m3/s)
+</a>
+
+        </li>
+		<hr>
+        <li>
+          <a href="#menu">Cumulative Qoutflow(SCFM)
+</a>
+        </li>
+		<hr>
+        <li>
+          <a href="#">HCR INVENTORY GRAPHS</a>
+        </li>
+		<hr>
+        <li>
+          <a href="#">Time decay Pressure ∆P  (bar).</a>
+        </li>
+		<hr>
+        <li>
+          <a href="#">Volumetric outflow during & after valve closure time</a>
+        </li>
+
+<hr>
+      </ul>
+
+
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+      <nav class="navbar navbar-default" >
+        <div class="container-fluid">
+
+          <div class="navbar-header">
+            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                                <span>Display Graphs</span>
+                            </button>
+          </div>
+
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+    </div>
+  </div>
+
+
+
+
+<!--  <div class="container" style="padding-top:150px; ">
+  <h2>Calculate</h2>
+  <form class="form-inline" action="">
+    <div class="form-group">
+      <label for="text">Radius-R:</label>
+      <input type="text" class="form-control" id="email" name="email" style="width:110px;"  placeholder="Radius-R">
+    </div>
+    <div class="form-group">
+      <label for="text">Pressure:</label>
+      <input type="text" class="form-control" id="pwd" name="pwd" style="width:110px;">
+    </div>
+	 <div class="form-group">
+      <label for="pwd">Temperature:</label>
+      <input type="text" class="form-control" id="pwd"  name="pwd" style="width:110px;">
+    </div>
+	 <div class="form-group">
+      <label for="text">Molar Mass:</label>
+      <input type="text" class="form-control" id="pwd"  name="pwd" style="width:110px;">
+    </div>
+	 <div class="form-group">
+      <label for="text">Downstream:</label>
+      <input type="text" class="form-control" id="pwd" name="pwd" style="width:110px; margin-right:20px;">
+    </div>
+    <button type="submit" class="btn btn-default">Generate</button>
+  </form>
+</div>
+ -->
+
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <!-- Bootstrap Js CDN -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- jQuery Custom Scroller CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+
+      $('#sidebarCollapse').on('click', function() {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+  <div class="container" style="padding-top:150px; ">
+  <form class="form-inline">
+    <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-2">
+      <input name="input1" placeholder="Radius-R" class="form-control" required>
+    </div>
+
+    <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-2" style="margin-left:20px;">
+      <input name="input2" type="number" placeholder="Pressure" class="form-control" step="any" required>
+    </div>
+   <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-2" style="margin-left:20px;">
+       <input name="input2" type="number" placeholder="Temperature" class="form-control" step="any" required>
+
+    </div>
+    <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-2" style="margin-left:20px;">
+      <input name="input4" type="number" placeholder="Molar Mass" class="form-control" step="any" required>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-2" style="margin-left:20px;" >
+      <input name="input5" type="number" placeholder="Downstream" class="form-control" required>
+    </div>
+
+      <button class="btn btn-default" type="submit" action ="" style="margin-left:40px;">Add</button>
+    </div>
+  </form>
+
+  <div class="container">
+<canvas id="myChart"></canvas>
+  </div>
+
+<div>
+<script>
+  let myChart = document.getElementById('myChart').getContext('2d');
+  Chart.defaults.global.defaultFontFamily = 'Lato';
+  Chart.defaults.global.defaultFontSize = 18;
+  Chart.defaults.global.defaultFontColor = '#777';
+
+  let valveChart = new Chart(myChart, {
+    type: 'line',
+    data: {
+      labels:['0.00','0.68','1.35','2.03','2.71','3.39','4.06','4.74','5.42','6.09'],
+
+      datasets:[{
+        label:'Totals',
+        data:[
+        205.00,
+        138.79,
+        93.96,
+        63.61,
+        43.06,
+        29.15,
+        19.74,
+        13.36,
+        9.05,
+        6.12,
+        4.15
+      ],
+         //backgroundColor: 'navy',
+        // backgroundColor: [
+        //   'rgba(255, 99, 132, 0.6)',
+        //   'rgba(54, 162, 235, 0.6)',
+        //   'rgba(255, 206, 86, 0.6)',
+        //   'rgba(75, 192, 192, 0.6)',
+        //   'rgba(153, 102, 255, 0.6)',
+        //   'rgba(255, 159, 64, 0.6)',
+        //   'rgba(255, 99, 132, 0.6)'
+
+        borderWidth:1,
+        borderColor:'red',
+        hoverBorderWidth:3,
+        hoverBorderColor:'green'
+      }]
+    },
+    options:{
+      title:{
+        display:true,
+        text:'Valve Closure',
+        fontSize:25
+      },
+      legend:{
+        display:true,
+        position:'right',
+        labels:{
+          fontColor:'#000'
+        }
+      },
+      layout:{
+        padding:{
+          left:50,
+          right:0,
+          bottom:0,
+          top:0
+        },
+
+      },
+      tooltips:{
+        enabled:true
+      }
+    }
+  });
+
+</script>
+<div>
+
+  <!-- <div class="container" style="padding-top:150px; padding-left:30px; ">
+    <div class="row">
+    <div class="center-block" style="margin-left:240px">
+    <img src="images/graph.png" width="600px" height="450px" >
+    </div> -->
+    </div>
+</body>
+
+</html>

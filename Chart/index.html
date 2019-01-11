@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- Changed my working branch -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <title>My Test Chart</title>
+</head>
+<body>
+  <div class="container">
+<canvas id="myChart"></canvas>
+  </div>
+<script>
+  let myChart = document.getElementById('myChart').getContext('2d');
+  Chart.defaults.global.defaultFontFamily = 'Lato';
+  Chart.defaults.global.defaultFontSize = 18;
+  Chart.defaults.global.defaultFontColor = '#777';
+
+  let valveChart = new Chart(myChart, {
+    type: 'line',
+    data: {
+      labels:['1','2','3','4','5','6','7','8','9','10'],
+
+      datasets:[{
+        label:'Totals',
+        data:[
+        16,
+        26,
+        8,
+        47,
+        22,
+        34,
+        63,
+        51,
+        4,
+        25,
+      ],
+         backgroundColor: 'navy',
+        // backgroundColor: [
+        //   'rgba(255, 99, 132, 0.6)',
+        //   'rgba(54, 162, 235, 0.6)',
+        //   'rgba(255, 206, 86, 0.6)',
+        //   'rgba(75, 192, 192, 0.6)',
+        //   'rgba(153, 102, 255, 0.6)',
+        //   'rgba(255, 159, 64, 0.6)',
+        //   'rgba(255, 99, 132, 0.6)'
+
+        borderWidth:1,
+        borderColor:'red',
+        hoverBorderWidth:3,
+        hoverBorderColor:'green'
+      }]
+    },
+    options:{
+      title:{
+        display:true,
+        text:'Valve Closure',
+        fontSize:25
+      },
+      legend:{
+        display:true,
+        position:'right',
+        labels:{
+          fontColor:'#000'
+        }
+      },
+      layout:{
+        padding:{
+          left:50,
+          right:0,
+          bottom:0,
+          top:0
+        },
+
+      },
+      tooltips:{
+        enabled:true
+      }
+    }
+  });
+
+</script>
+
+</body>
+</html>
