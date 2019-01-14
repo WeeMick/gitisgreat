@@ -133,7 +133,7 @@
 				  <button type="submit" style="margin:5px";>Generate</button>
 
            </form>
-			<div class="container" style="margin-top:100px; margin-bottom:100px;">
+			<div class="container" style="margin-top:100px; margin-bottom:100px; width: 100%;">
 
         <canvas id="myChart"></canvas>
 
@@ -146,41 +146,59 @@
           Chart.defaults.global.defaultFontColor = '#777';
 
           let valveChart = new Chart(myChart, {
-            type: 'line',
+            type: 'scatter',
             data: {
-              labels:['0.00','0.68','1.35','2.03','2.71','3.39','4.06','4.74','5.42','6.09'],
-
+              //labels:[1,2,3,4,5,6,7,8,9,10],
+// '0.00','0.68','1.35','2.03','2.71','3.39','4.06','4.74','5.42','6.09'
               datasets:[{
                 label:'Totals',
-                data:[
-                205.00,
-                138.79,
-                93.96,
-                63.61,
-                43.06,
-                29.15,
-                19.74,
-                13.36,
-                9.05,
-                6.12,
-                4.15
+                data:[ {
+                  x:0.00,
+                  y:205.00},
+                  {
+                    x:0.68,
+                    y:138.79
+                  },
+                  {
+                  x:1.35,
+                  y:93.96
+                },
+                  {
+                    x:2.03,
+                    y:63.61
+                  },
+                  {
+                  x:2.71,
+                  y:43.06
+                },
+                {
+                  x:3.39,
+                  y:29.15
+                },
+                  {
+                    x:4.06,
+                    y:19.74,
+                  },
+                  {
+                  x:4,74,
+                  y:13.36
+                },
+                  {
+                    x:5.42,
+                    y:9.05
+                  },
+                  {
+                    x:6.09,
+                    y:6.12
+                  }
+                }
               ],
-                 //backgroundColor: 'navy',
-                // backgroundColor: [
-                //   'rgba(255, 99, 132, 0.6)',
-                //   'rgba(54, 162, 235, 0.6)',
-                //   'rgba(255, 206, 86, 0.6)',
-                //   'rgba(75, 192, 192, 0.6)',
-                //   'rgba(153, 102, 255, 0.6)',
-                //   'rgba(255, 159, 64, 0.6)',
-                //   'rgba(255, 99, 132, 0.6)'
 
                 borderWidth:1,
                 borderColor:'red',
                 hoverBorderWidth:3,
                 hoverBorderColor:'green'
-              }]
-            },
+              }],
             options:{
               title:{
                 display:true,
