@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Valve Closure</title>
+
+    <!-- Chart.js Script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script language="JavaScript">
+        function showInput() {
+            document.getElementById('display').innerHTML =
+                document.getElementById("user_input").value;
+            document.getElementById('display').innerHTML =
+                document.getElementById("user_input1").value;
+            document.getElementById('display').innerHTML =
+                document.getElementById("user_input2").value;
+            document.getElementById('display').innerHTML =
+                document.getElementById("user_input3").value;
+
+        }
+    </script>
+</head>
+
+<body onload="clearStorage()">
+
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header" >
+                <h3>Choose Graph</h3>
+            </div>
+				
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="#">Pressure Diffrential @ valve ∆P(bar)</a>
+                </li>
+				<hr>
+                <li>
+                    <a href="#">Volumetric flow across Valve Q (m3/s)</a>
+                </li>
+				<hr>
+				<li>
+                    <a href="#">Total Outflow @ Rupture Qoutflow(m3/s)</a>
+                </li>
+				<hr>
+				<li>
+                    <a href="#">Cumulative Qoutflow(SCFM)</a>
+                </li>
+				<hr>
+				<li>
+                    <a href="#">HCR INVENTORY GRAPHS</a>
+                </li>
+				<hr>
+				<li>
+                    <a href="#">Time decay Pressure ∆P  (bar).</a>
+                </li>
+				<hr>
+				<li>
+                    <a href="#">Volumetric outflow during & after valve closure time</a>
+                </li>
+				<hr>
+				<li>
+                    <a href="#">Fluid velocity u(t)(m/s)</a>
+                </li>
+				<hr>
+				<li>
+                    <a href="#">Valve Opening Area Af (mm2)</a>
+                </li>
+				<hr>
+				<li>
+                    <a href="#">Pressure Diffrential  ∆P(bar) vs. Degree of Opening of Valve.</a>
+                </li>
+				<hr>
+				<li>
+                    <a href="#">Decay mass flow rate during & after valve closure time</a>
+                </li>
+				<hr>
+				<li>
+                    <a href="#">Reverse flow  Qrk(m3/s)</a>
+                </li>
+				<hr>
+				<li>
+                    <a href="#">mass flow rate @ Rupture Qmj(kg/s)</a>
+                </li>
+				<hr>
+				<li>
+                    <a href="#">Fluid velocity u(t)(m/s)</a>
+                </li>
+				
+            </ul>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+								<img src="images/logo1.jpg" alt="logo" style="height:4em">
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            
+            <h2>Calculate</h2>
+			
+			<form class="form-inline" action="index.php" method="get" style="margin:10px;">
+  
+				  <input type="number" id="user_input" placeholder="Diameter (mm)" name="diameter" style="margin:5px">
+				  
+				  <input type="number" id="user_input1" placeholder="Pressure (bar)" name="pressure" style="margin:5px">
+
+				  <input type="number" id="user_input2" placeholder="Temperature (&#176C)" name="temp" style="margin:5px">
+				  
+				  
+				  <input type="number" id="user_input3" placeholder="Molar Mass (kg/mol)" name = "mass" style="margin:5px">
+				  
+				  
+				  <input  type="number" id="user_input4" placeholder="Downstream Pressure (bar)" name="dwnPressure" style="margin:5px">
+
+                <input type="submit" value="Generate" class="btn btn-info m-5" onclick="myFunction();">
+        
+           </form>
+
+           <!--Graph-->
+           <div class="container-fluid mt-5 pt-5">
+                <div class="row">
+                    <div class="col-sm-10">
+
+                            <canvas id="myChart"></canvas>
+  
+
+                    </div>
+            
+                        
+                    <div class="col-sm-2">
+                        <h4 id="searchTitle" class="d-none mb-5">Search values</h4>
+                            <p id="out1"></p>
+                            <p id="out2"></p>
+                            <p id="out3"></p>
+                            <p id="out4"></p>
+                            <p id="out5"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+
+<script>    
+    
+        function myFunction() {
+    
+            value1 = document.getElementById('user_input').value;
+            value2 = document.getElementById('user_input1').value;
+            value3 = document.getElementById('user_input2').value;
+            value4 = document.getElementById('user_input3').value;
+            value5 = document.getElementById('user_input4').value;
+            localStorage.setItem('value1', value1);
+            localStorage.setItem('value2', value2);
+            localStorage.setItem('value3', value3);
+            localStorage.setItem('value4', value4);
+            localStorage.setItem('value5', value5);
+            
+        }
+    
+        if (localStorage.getItem('value1')) {
+        document.getElementById('out1').innerHTML = "Diameter: " + localStorage.getItem('value1'); 
+        document.getElementById('out2').innerHTML = "Pressure: " + localStorage.getItem('value2'); 
+        document.getElementById('out3').innerHTML = "Temperature: " + localStorage.getItem('value3'); 
+        document.getElementById('out4').innerHTML = "Molar Mass: " + localStorage.getItem('value4'); 
+        document.getElementById('out5').innerHTML = "Downstream Pressure: " + localStorage.getItem('value5'); 
+        document.getElementById('searchTitle').setAttribute('class','');
+        }
+    
+        function clearStorage() {
+            localStorage.removeItem('value1');
+            localStorage.removeItem('value2');
+            localStorage.removeItem('value3');
+            localStorage.removeItem('value4');
+            localStorage.removeItem('value5');
+        }
+    
+    </script>
+
+<script>
+
+        //Gets the arrays from localStorage
+        dataArray1 = localStorage.getItem('data');
+        dataArray2 = localStorage.getItem('data2');
+
+        if (dataArray1) {
+            dataX = JSON.parse(dataArray1); //Converts from string to array
+            dataY = JSON.parse(dataArray2); //Converts from string to array
+        }
+
+        var chartData = []; //holds all x and y coordinates for each data point
+
+        //loops through both arrays and appends each x,y coordinate pair to the chartData array
+        for(var i = 0; i<dataX.length; i++) {
+            console.log(dataX[i]);
+            console.log(dataY[i]);
+           let dataNxt = {
+                x: dataX[i],
+                y: dataY[i]};
+
+            chartData.push(dataNxt);
+
+        }
+
+        console.log(chartData);
+
+
+
+        let myChart = document.getElementById('myChart').getContext('2d');
+        Chart.defaults.global.defaultFontFamily = 'Lato';
+        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.defaultFontColor = '#777';
+  
+        let valveChart = new Chart(myChart, {
+          type: 'scatter',
+          data: {
+            datasets: [{
+              label: "Test",
+              data: chartData,
+                showLine: true
+              }]
+            },
+            options:{
+              title:{
+                display:true,
+                text:'Valve Closure',
+                fontSize:25
+              },
+              scales: {
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Pressure Differential(bar) across valve'
+              }
+            }],
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Time  during closure (s)'
+              }
+            }]
+          },
+              legend:{
+                display:false,
+                position:'right',
+                labels:{
+                  fontColor:'#000'
+                }
+              },
+              layout:{
+                padding:{
+                  left:50,
+                  right:0,
+                  bottom:0,
+                  top:0
+                },
+  
+              },
+              tooltips:{
+                enabled:true
+              }
+            }
+          });
+  
+          </script>
+
+
+    <?php
+echo '<script>';
+echo 'var shirt = ' . json_encode($numbers) . ';';
+echo '</script>';
+?>
+
+
+</body>
+
+</html>
