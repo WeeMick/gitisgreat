@@ -19,19 +19,6 @@
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-    <script language="JavaScript">
-        function showInput() {
-            document.getElementById('display').innerHTML =
-                document.getElementById("user_input").value;
-            document.getElementById('display').innerHTML =
-                document.getElementById("user_input1").value;
-            document.getElementById('display').innerHTML =
-                document.getElementById("user_input2").value;
-            document.getElementById('display').innerHTML =
-                document.getElementById("user_input3").value;
-
-        }
-    </script>
 </head>
 
 <body onload="clearStorage()">
@@ -133,17 +120,17 @@
 			
 			<form class="form-inline" action="index.php" method="get" style="margin:10px;">
   
-				  <input type="number" id="user_input" placeholder="Diameter (mm)" name="diameter" style="margin:5px">
+				  <input type="number" id="diameter" placeholder="Diameter (mm)" name="diameter" style="margin:5px">
 				  
-				  <input type="number" id="user_input1" placeholder="Pressure (bar)" name="pressure" style="margin:5px">
+				  <input type="number" id="pressure" placeholder="Pressure (bar)" name="pressure" style="margin:5px">
 
-				  <input type="number" id="user_input2" placeholder="Temperature (&#176C)" name="temp" style="margin:5px">
+				  <input type="number" id="temp" placeholder="Temperature (&#176C)" name="temp" style="margin:5px">
 				  
 				  
-				  <input type="number" id="user_input3" placeholder="Molar Mass (kg/mol)" name = "mass" style="margin:5px">
+				  <input type="number" id="mass" placeholder="Molar Mass (kg/mol)" name = "mass" style="margin:5px">
 				  
 				  
-				  <input  type="number" id="user_input4" placeholder="Downstream Pressure (bar)" name="dwnPressure" style="margin:5px">
+				  <input  type="number" id="dwnPressure" placeholder="Downstream Pressure (bar)" name="dwnPressure" style="margin:5px">
 
                 <input type="submit" value="Generate" class="btn btn-info m-5" onclick="myFunction();">
         
@@ -194,34 +181,34 @@
     
         function myFunction() {
     
-            value1 = document.getElementById('user_input').value;
-            value2 = document.getElementById('user_input1').value;
-            value3 = document.getElementById('user_input2').value;
-            value4 = document.getElementById('user_input3').value;
-            value5 = document.getElementById('user_input4').value;
-            localStorage.setItem('value1', value1);
-            localStorage.setItem('value2', value2);
-            localStorage.setItem('value3', value3);
-            localStorage.setItem('value4', value4);
-            localStorage.setItem('value5', value5);
+            diameter = document.getElementById('diameter').value;
+            pressure = document.getElementById('pressure').value;
+            temp = document.getElementById('temp').value;
+            mass = document.getElementById('mass').value;
+            dwnPressure = document.getElementById('dwnPressure').value;
+            localStorage.setItem('diameter', diameter);
+            localStorage.setItem('pressure', pressure);
+            localStorage.setItem('temp', temp);
+            localStorage.setItem('mass', mass);
+            localStorage.setItem('dwnPressure', dwnPressure);
             
         }
     
-        if (localStorage.getItem('value1')) {
-        document.getElementById('out1').innerHTML = "Diameter: " + localStorage.getItem('value1'); 
-        document.getElementById('out2').innerHTML = "Pressure: " + localStorage.getItem('value2'); 
-        document.getElementById('out3').innerHTML = "Temperature: " + localStorage.getItem('value3'); 
-        document.getElementById('out4').innerHTML = "Molar Mass: " + localStorage.getItem('value4'); 
-        document.getElementById('out5').innerHTML = "Downstream Pressure: " + localStorage.getItem('value5'); 
+        if (localStorage.getItem('diameter')) {
+        document.getElementById('out1').innerHTML = "Diameter: " + localStorage.getItem('diameter') + " mm";
+        document.getElementById('out2').innerHTML = "Pressure: " + localStorage.getItem('pressure') + " bar";
+        document.getElementById('out3').innerHTML = "Temperature: " + localStorage.getItem('temp') + " &#176C";
+        document.getElementById('out4').innerHTML = "Molar Mass: " + localStorage.getItem('mass') + " kg/mol";
+        document.getElementById('out5').innerHTML = "Downstream Pressure: " + localStorage.getItem('dwnPressure') + " bar";
         document.getElementById('searchTitle').setAttribute('class','');
         }
     
         function clearStorage() {
-            localStorage.removeItem('value1');
-            localStorage.removeItem('value2');
-            localStorage.removeItem('value3');
-            localStorage.removeItem('value4');
-            localStorage.removeItem('value5');
+            localStorage.removeItem('diameter');
+            localStorage.removeItem('pressure');
+            localStorage.removeItem('temp');
+            localStorage.removeItem('mass');
+            localStorage.removeItem('dwnPressure');
         }
     
     </script>
