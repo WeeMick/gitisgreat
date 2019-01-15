@@ -30,9 +30,9 @@
                 <h3>Choose Graph</h3>
             </div>
 				
-            <ul class="list-unstyled components">
+            <ul id = "graphBar" class="list-unstyled components">
                 <li>
-                    <a href="#">Pressure Diffrential @ valve ∆P(bar)</a>
+                    <a href="#">Pressure Differential @ valve ∆P(bar)</a>
                 </li>
 				<hr>
                 <li>
@@ -51,8 +51,12 @@
                     <a href="#">HCR INVENTORY GRAPHS</a>
                 </li>
 				<hr>
+                <li>
+                    <a href="#">Cumulative &#931Q outflow(m3/s)</a>
+                </li>
+                <hr>
 				<li>
-                    <a href="#">Time decay Pressure ∆P  (bar).</a>
+                    <a href="#">Time decay Pressure ∆P(bar).</a>
                 </li>
 				<hr>
 				<li>
@@ -68,7 +72,7 @@
                 </li>
 				<hr>
 				<li>
-                    <a href="#">Pressure Diffrential  ∆P(bar) vs. Degree of Opening of Valve.</a>
+                    <a href="#">Pressure Differential  ∆P(bar) vs. Degree of Opening of Valve.</a>
                 </li>
 				<hr>
 				<li>
@@ -80,7 +84,7 @@
                 </li>
 				<hr>
 				<li>
-                    <a href="#">mass flow rate @ Rupture Qmj(kg/s)</a>
+                    <a href="#">Mass flow rate @ Rupture Qmj(kg/s)</a>
                 </li>
 				<hr>
 				<li>
@@ -126,8 +130,8 @@
 
 				  <input class="m-2" type="number" id="temp" placeholder="Temperature (&#176C)" name="temp" >
 
-				  
-				  <input class="m-2" type="number" id="mass" placeholder="Molar Mass (kg/mol)" name = "mass" >
+
+				  <input class="m-2" type="number" step="0.0001" id="mass" placeholder="Molar Mass (kg/mol)" name = "mass" >
 				  
 				  
 				  <input class="m-2" type="number" id="dwnPressure" placeholder="Downstream Pressure (bar)" name="dwnPressure">

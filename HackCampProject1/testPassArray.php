@@ -1,6 +1,6 @@
 <?php
 
-//Include in formulas.php with two arrays to be passed out
+//Include in calculator.php with two arrays to be passed out
 
 if(isset($_GET['diameter'])) {
 $value1 = $_GET['diameter']/2;
@@ -17,18 +17,18 @@ $value5 = $_GET['dwnPressure'];
 }
 
 //Changing the values in these arrays changes the output to the graph
-$numbers = array( 1,2,3,4,5); //x-axis values
+$xAxis = array( 1,2,3,4,5); //x-axis values
 
-$numbers2 = array( $value1,$value2,$value3,$value4,$value5); //y-axis values
+$yAxis = array( $value1,$value2,$value3,$value4,$value5); //y-axis values
 
 
 echo '<script>';
-echo 'var data; var numbers = ' . json_encode($numbers) . ';';
+echo 'var data; var numbers = ' . json_encode($xAxis) . ';';
 echo 'localStorage.setItem(\'data\', JSON.stringify(numbers))' . ';';
 echo '</script>';
 
 
 echo '<script>';
-echo 'var data; var numbers2 = ' . json_encode($numbers2) . ';';
+echo 'var data; var numbers2 = ' . json_encode($yAxis) . ';';
 echo 'localStorage.setItem(\'data2\', JSON.stringify(numbers2))' . ';';
 echo '</script>';
