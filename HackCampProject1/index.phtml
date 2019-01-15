@@ -101,11 +101,9 @@
                         <span></span>
                         <span></span>
                     </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <div class="" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
 								<img src="images/logo1.jpg" alt="logo" style="height:4em">
@@ -117,23 +115,25 @@
             </nav>
             
             <h2>Calculate</h2>
-			
-			<form class="form-inline" action="index.php" method="get" style="margin:10px;">
-  
-				  <input type="number" id="diameter" placeholder="Diameter (mm)" name="diameter" style="margin:5px">
-				  
-				  <input type="number" id="pressure" placeholder="Pressure (bar)" name="pressure" style="margin:5px">
 
-				  <input type="number" id="temp" placeholder="Temperature (&#176C)" name="temp" style="margin:5px">
-				  
-				  
-				  <input type="number" id="mass" placeholder="Molar Mass (kg/mol)" name = "mass" style="margin:5px">
-				  
-				  
-				  <input  type="number" id="dwnPressure" placeholder="Downstream Pressure (bar)" name="dwnPressure" style="margin:5px">
 
-                <input type="submit" value="Generate" class="btn btn-info m-5" onclick="myFunction();">
-        
+			<form class="form-inline" action="index.php" method="get" >
+
+
+				  <input class="m-2" type="number" id="diameter" placeholder="Diameter (mm)" name="diameter">
+				  
+				  <input class="m-2" type="number" id="pressure" placeholder="Pressure (bar)" name="pressure">
+
+				  <input class="m-2" type="number" id="temp" placeholder="Temperature (&#176C)" name="temp" >
+
+				  
+				  <input class="m-2" type="number" id="mass" placeholder="Molar Mass (kg/mol)" name = "mass" >
+				  
+				  
+				  <input class="m-2" type="number" id="dwnPressure" placeholder="Downstream Pressure (bar)" name="dwnPressure">
+
+                <input type="submit" value="Generate" class="btn btn-info align-self-right ml-2" onclick="myFunction();">
+
            </form>
 
            <!--Graph-->
@@ -147,7 +147,7 @@
                     </div>
             
                         
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 mt-2">
                         <h4 id="searchTitle" class="d-none mb-5">Search values</h4>
                             <p id="out1"></p>
                             <p id="out2"></p>
