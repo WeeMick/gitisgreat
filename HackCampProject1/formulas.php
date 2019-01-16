@@ -37,6 +37,7 @@ for($i=0;$i<11;$i++) {
     $x = $calculator->calculateX(); //$r, $cd, $deltap, $density, $deltaT
     $af = $calculator->valveOpeningArea(); //$r, $x, $cd, $deltap, $density, $deltaT
     $q = $calculator->calculateQ($af, $cd[$i], $deltaP, $p);  //$areaF, $cd, $deltap, $density, $deltaT, $r
+    $qArray [] = $q;
     $u = $calculator->calculateU($q, $af);  //$q, $areaF, $deltap, $density, $deltaT, $r
     $uArray []= $u;
     $c = $calculator->calculateCelerity($deltaP, $p, $u);  //$deltap, $density, $fluid, $deltaT, $r
@@ -49,18 +50,35 @@ for($i=0;$i<11;$i++) {
     $timeArray [] = $time;
 }
 
-$xAxis = $timeArray;
-$yAxis = $deltaParray;
-
-
-
 echo '<script>';
-echo 'var data; var numbers = ' . json_encode($xAxis) . ';';
-echo 'localStorage.setItem(\'data\', JSON.stringify(numbers))' . ';';
+echo 'var data; var numbers = ' . json_encode($timeArray) . ';';
+echo 'localStorage.setItem(\'xChart1\', JSON.stringify(numbers))' . ';';
 echo '</script>';
 
 
 echo '<script>';
-echo 'var data; var numbers2 = ' . json_encode($yAxis) . ';';
-echo 'localStorage.setItem(\'data2\', JSON.stringify(numbers2))' . ';';
+echo 'var data; var numbers2 = ' . json_encode($deltaParray) . ';';
+echo 'localStorage.setItem(\'yChart1\', JSON.stringify(numbers2))' . ';';
+echo '</script>';
+
+echo '<script>';
+echo 'var data; var numbers = ' . json_encode($timeArray) . ';';
+echo 'localStorage.setItem(\'xChart2\', JSON.stringify(numbers))' . ';';
+echo '</script>';
+
+
+echo '<script>';
+echo 'var data; var numbers2 = ' . json_encode($qArray) . ';';
+echo 'localStorage.setItem(\'yChart2\', JSON.stringify(numbers2))' . ';';
+echo '</script>';
+
+echo '<script>';
+echo 'var data; var numbers = ' . json_encode($timeArray) . ';';
+echo 'localStorage.setItem(\'xChart3\', JSON.stringify(numbers))' . ';';
+echo '</script>';
+
+
+echo '<script>';
+echo 'var data; var numbers2 = ' . json_encode($uArray) . ';';
+echo 'localStorage.setItem(\'yChart3\', JSON.stringify(numbers2))' . ';';
 echo '</script>';

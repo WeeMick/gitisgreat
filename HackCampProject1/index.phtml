@@ -32,15 +32,15 @@
 				
             <ul id = "graphBar" class="list-unstyled components">
                 <li>
-                    <a href="#">Pressure Differential @ valve ∆P(bar)</a>
+                    <a href="#" onclick='changeChart(this)' id="chart1">Pressure Differential @ valve ∆P(bar)</a>
                 </li>
 				<hr>
                 <li>
-                    <a href="#">Volumetric flow across Valve Q (m3/s)</a>
+                    <a onclick='changeChart(this)' href="#" id="chart2">Volumetric flow across Valve Q (m3/s)</a>
                 </li>
 				<hr>
 				<li>
-                    <a href="#">Total Outflow @ Rupture Qoutflow(m3/s)</a>
+                    <a onclick='changeChart(this)' href="#" id="chart3">Total Outflow @ Rupture Qoutflow(m3/s)</a>
                 </li>
 				<hr>
 				<li>
@@ -217,99 +217,127 @@
     
     </script>
 
-<script>
-
-        //Gets the arrays from localStorage
-        dataArray1 = localStorage.getItem('data');
-        dataArray2 = localStorage.getItem('data2');
-
-        if (dataArray1) {
-            dataX = JSON.parse(dataArray1); //Converts from string to array
-            dataY = JSON.parse(dataArray2); //Converts from string to array
-        }
-
-        var chartData = []; //holds all x and y coordinates for each data point
-
-        //loops through both arrays and appends each x,y coordinate pair to the chartData array
-        for(var i = 0; i<dataX.length; i++) {
-            console.log(dataX[i]);
-            console.log(dataY[i]);
-           let dataNxt = {
-                x: dataX[i],
-                y: dataY[i]};
-
-            chartData.push(dataNxt);
-
-        }
-
-        console.log(chartData);
+    <script>
 
 
 
-        let myChart = document.getElementById('myChart').getContext('2d');
-        Chart.defaults.global.defaultFontFamily = 'Lato';
-        Chart.defaults.global.defaultFontSize = 18;
-        Chart.defaults.global.defaultFontColor = '#777';
-  
-        let valveChart = new Chart(myChart, {
-          type: 'scatter',
-          data: {
-            datasets: [{
-              label: "Test",
-              data: chartData,
-                showLine: true
-              }]
-            },
-            options:{
-              title:{
-                display:true,
-                text:'Valve Closure',
-                fontSize:25
-              },
-              scales: {
-            yAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'Pressure Differential(bar) across valve'
-              }
-            }],
-            xAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'Time  during closure (s)'
-              }
-            }]
-          },
-              legend:{
-                display:false,
-                position:'right',
-                labels:{
-                  fontColor:'#000'
-                }
-              },
-              layout:{
-                padding:{
-                  left:50,
-                  right:0,
-                  bottom:0,
-                  top:0
-                },
-  
-              },
-              tooltips:{
-                enabled:true
-              }
+        var dataArray1 = localStorage.getItem('xChart1');
+        var dataArray2 = localStorage.getItem('yChart1');
+        generateChart();
+
+
+        function changeChart(element) {
+
+
+            console.log(element);
+            if (element.id=="chart1") {
+
+                console.log("if1reached");
+                //Gets the arrays from localStorage
+                dataArray1 = localStorage.getItem('xChart1');
+                dataArray2 = localStorage.getItem('yChart1');
+                generateChart();
+            } else if (element.id=="chart2") {
+                console.log("if2reached");
+                dataArray1 = localStorage.getItem('xChart2');
+                dataArray2 = localStorage.getItem('yChart2');
+                generateChart();
+
+            } else if (element.id=="chart3") {
+                console.log("if3reached");
+                dataArray1 = localStorage.getItem('xChart3');
+                dataArray2 = localStorage.getItem('yChart3');
+                generateChart();
             }
-          });
-  
-          </script>
+        }
+
+        function generateChart() {
+            var dataX = JSON.parse(dataArray1); //Converts from string to array
+            var dataY = JSON.parse(dataArray2); //Converts from string to array
+
+            var chartData = []; //holds all x and y coordinates for each data point
+
+            //loops through both arrays and appends each x,y coordinate pair to the chartData array
+            for (var i = 0; i < dataX.length; i++) {
+                console.log(dataX[i]);
+                console.log(dataY[i]);
+                let dataNxt = {
+                    x: dataX[i],
+                    y: dataY[i]
+                };
+
+                chartData.push(dataNxt);
+
+            }
+
+            console.log(chartData);
+
+
+            let myChart = document.getElementById('myChart').getContext('2d');
+            Chart.defaults.global.defaultFontFamily = 'Lato';
+            Chart.defaults.global.defaultFontSize = 18;
+            Chart.defaults.global.defaultFontColor = '#777';
+
+            let valveChart = new Chart(myChart, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: "Test",
+                        data: chartData,
+                        showLine: true
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Valve Closure',
+                        fontSize: 25
+                    },
+                    scales: {
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Pressure Differential(bar) across valve'
+                            }
+                        }],
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Time  during closure (s)'
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: false,
+                        position: 'right',
+                        labels: {
+                            fontColor: '#000'
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 50,
+                            right: 0,
+                            bottom: 0,
+                            top: 0
+                        },
+
+                    },
+                    tooltips: {
+                        enabled: true
+                    }
+                }
+            });
+        }
+
+    </script>
 
 
     <?php
-echo '<script>';
-echo 'var shirt = ' . json_encode($numbers) . ';';
-echo '</script>';
-?>
+    echo '<script>';
+    echo 'var shirt = ' . json_encode($numbers) . ';';
+    echo '</script>';
+    ?>
 
 
 </body>
