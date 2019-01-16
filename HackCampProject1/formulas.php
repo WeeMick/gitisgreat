@@ -50,35 +50,40 @@ for($i=0;$i<11;$i++) {
     $timeArray [] = $time;
 }
 
+//Outputs Graph 1
 echo '<script>';
 echo 'var data; var numbers = ' . json_encode($timeArray) . ';';
-echo 'localStorage.setItem(\'xChart1\', JSON.stringify(numbers))' . ';';
+echo 'localStorage.setItem(\'xDeltaPChart\', JSON.stringify(numbers))' . ';';
 echo '</script>';
 
 
 echo '<script>';
 echo 'var data; var numbers2 = ' . json_encode($deltaParray) . ';';
-echo 'localStorage.setItem(\'yChart1\', JSON.stringify(numbers2))' . ';';
+echo 'localStorage.setItem(\'yDeltaPChart\', JSON.stringify(numbers2))' . ';';
 echo '</script>';
 
+
+//Outputs graph 2
 echo '<script>';
 echo 'var data; var numbers = ' . json_encode($timeArray) . ';';
-echo 'localStorage.setItem(\'xChart2\', JSON.stringify(numbers))' . ';';
+echo 'localStorage.setItem(\'xQChart\', JSON.stringify(numbers))' . ';';
 echo '</script>';
 
 
 echo '<script>';
 echo 'var data; var numbers2 = ' . json_encode($qArray) . ';';
-echo 'localStorage.setItem(\'yChart2\', JSON.stringify(numbers2))' . ';';
+echo 'localStorage.setItem(\'yQChart\', JSON.stringify(numbers2))' . ';';
 echo '</script>';
 
+
+//outputs graph 3
 echo '<script>';
 echo 'var data; var numbers = ' . json_encode($timeArray) . ';';
-echo 'localStorage.setItem(\'xChart3\', JSON.stringify(numbers))' . ';';
+echo 'localStorage.setItem(\'xFluidUChart\', JSON.stringify(numbers))' . ';';
 echo '</script>';
 
 
 echo '<script>';
 echo 'var data; var numbers2 = ' . json_encode($uArray) . ';';
-echo 'localStorage.setItem(\'yChart3\', JSON.stringify(numbers2))' . ';';
+echo 'localStorage.setItem(\'yFluidUChart\', JSON.stringify(numbers2))' . ';';
 echo '</script>';

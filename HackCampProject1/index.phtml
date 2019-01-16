@@ -32,23 +32,19 @@
 				
             <ul id = "graphBar" class="list-unstyled components">
                 <li>
-                    <a href="#" onclick='changeChart(this)' id="chart1">Pressure Differential @ valve ∆P(bar)</a>
+                    <a href="#" onclick='changeChart(this)' id="deltaPChart">Pressure Differential @ valve ∆P(bar)</a>
                 </li>
 				<hr>
                 <li>
-                    <a onclick='changeChart(this)' href="#" id="chart2">Volumetric flow across Valve Q (m3/s)</a>
+                    <a onclick='changeChart(this)' href="#" id="qChart">Volumetric flow across Valve Q (m3/s)</a>
                 </li>
 				<hr>
 				<li>
-                    <a onclick='changeChart(this)' href="#" id="chart3">Total Outflow @ Rupture Qoutflow(m3/s)</a>
+                    <a onclick='changeChart(this)' href="#" id="fluidUChart">Total Outflow @ Rupture Qoutflow(m3/s)</a>
                 </li>
 				<hr>
 				<li>
                     <a href="#">Cumulative Qoutflow(SCFM)</a>
-                </li>
-				<hr>
-				<li>
-                    <a href="#">HCR INVENTORY GRAPHS</a>
                 </li>
 				<hr>
                 <li>
@@ -118,15 +114,15 @@
                 </div>
             </nav>
             
-            <h2>Calculate</h2>
-
+            <h2>Emergency Shut-down Valve Closure Model</h2>
+            <h5 class="mt-4 ml-2">Enter values to begin</h5>
 
 			<form class="form-inline" action="index.php" method="get" >
 
 
 				  <input class="m-2" type="number" id="diameter" placeholder="Diameter (mm)" name="diameter">
 				  
-				  <input class="m-2" type="number" id="pressure" placeholder="Pressure (bar)" name="pressure">
+				  <input class="m-2" type="number" id="pressure" placeholder="Differential Pressure (bar)" name="pressure">
 
 				  <input class="m-2" type="number" id="temp" placeholder="Temperature (&#176C)" name="temp" >
 
@@ -221,8 +217,10 @@
 
 
 
-        var dataArray1 = localStorage.getItem('xChart1');
-        var dataArray2 = localStorage.getItem('yChart1');
+        var dataArray1 = localStorage.getItem('xDeltaPChart');
+        var dataArray2 = localStorage.getItem('yDeltaPChart');
+        var chartName = "Pressure Differential @ valve ∆P(bar)";
+        var yLabel =
         generateChart();
 
 
@@ -230,23 +228,25 @@
 
 
             console.log(element);
-            if (element.id=="chart1") {
-
-                console.log("if1reached");
+            if (element.id=="deltaPchart") {
                 //Gets the arrays from localStorage
-                dataArray1 = localStorage.getItem('xChart1');
-                dataArray2 = localStorage.getItem('yChart1');
+                dataArray1 = localStorage.getItem('xDeltaPChart');
+                dataArray2 = localStorage.getItem('yDeltaPChart');
+                chartName = "Pressure Differential @ valve ∆P(bar)";
+                yLabel = "Pressure Differential(bar) across valve";
                 generateChart();
-            } else if (element.id=="chart2") {
-                console.log("if2reached");
-                dataArray1 = localStorage.getItem('xChart2');
-                dataArray2 = localStorage.getItem('yChart2');
+            } else if (element.id=="qChart") {
+                dataArray1 = localStorage.getItem('xQChart');
+                dataArray2 = localStorage.getItem('yQChart');
+                chartName = "Volumetric flow across Valve Q (m3/s)";
+                yLabel = "Volumetric flow Across valve Qi(t)(m3/s";
                 generateChart();
 
-            } else if (element.id=="chart3") {
-                console.log("if3reached");
-                dataArray1 = localStorage.getItem('xChart3');
-                dataArray2 = localStorage.getItem('yChart3');
+            } else if (element.id=="fluidUChart") {
+                dataArray1 = localStorage.getItem('xFluidUChart');
+                dataArray2 = localStorage.getItem('yFluidUChart');
+                chartName = "Fluid velocity u(t)(m/s)";
+                yLabel="Flow velocity u(t)(m/s)";
                 generateChart();
             }
         }
@@ -290,14 +290,14 @@
                 options: {
                     title: {
                         display: true,
-                        text: 'Valve Closure',
+                        text: chartName,
                         fontSize: 25
                     },
                     scales: {
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Pressure Differential(bar) across valve'
+                                labelString: yLabel
                             }
                         }],
                         xAxes: [{
